@@ -1,28 +1,22 @@
-# Danny Automotive — Website Preview
+# Danny Automotive — Website
 
-Static website built for GitHub → Vercel deployment. No local hosting and no build step required.
+Static site for GitHub → Vercel deployment. No build step required.
 
 ## Deploy
 1. Extract this ZIP.
-2. Upload the contents to a new GitHub repository.
-3. In Vercel, choose **Add New → Project** and import the repo.
-4. Framework preset: **Other**.
-5. Leave Build Command and Output Directory blank.
-6. Deploy.
+2. Upload the contents to your GitHub repo (replace existing files).
+3. Vercel redeploys automatically, or import fresh: Add New → Project → Framework preset "Other", leave Build Command and Output Directory blank.
 
-## Business details used
-- Danny Automotive
-- Mobile automotive repair
-- Phone: 347-722-0062
-- Service area: all five NYC boroughs + New Jersey
-- Primary service: brakes & rotors
-- Additional positioning: diagnostics, maintenance and general automotive repair
+## What changed from the previous version
+- New logo: an inline brake-rotor + caliper mark (crisp at any size, no more blurry scaled image) paired with a real text wordmark, so it never looks stretched or misaligned again.
+- New type system: Big Shoulders Display (headlines), Space Grotesk (body/UI), IBM Plex Mono (labels/data) — replaces Anton/Rajdhani.
+- New visual concept: a "work order / dispatch" identity — the hero ticket card, job-code tags on service cards, and the coverage "manifest" all tie back to how an actual repair shop writes up a job, instead of a generic dark hero + badge template.
+- Motion tightened throughout: hover/interaction transitions now run 140–220ms (previously 250–300ms+), with one orchestrated hero entrance instead of scattered fade-ins on every element.
+- Business details, phone number, service area and copy are unchanged and accurate: 347-722-0062, all 5 NYC boroughs + NJ, brakes/rotors specialty plus diagnostics, maintenance and general repair.
 
-## Theme
-Red & black palette (racing red `#ff1f2e` / `#5c0910` on near-black `#0b0707`), Anton for display headlines and Rajdhani for body/UI text. Motion is tuned fast throughout: ~0.15–0.3s transitions, a quick hero slice-reveal on load, a 9s ticker loop, and snappy hover states on buttons/cards.
-
-## Images
-The site references remote stock photography from `images.unsplash.com`. No AI-generated photography is included in the project.
+## Files
+- `index.html` / `styles.css` / `script.js` — the site
+- `assets/mark.svg` — standalone favicon/social icon (the on-page logo is inline SVG in index.html so it can use the site's fonts and colors)
 
 ## Service request form
-The form is intentionally serverless. It creates a pre-filled SMS to Danny Automotive so there is no backend, database or paid form service to configure.
+Serverless by design — it opens a pre-filled SMS to Danny Automotive. No backend needed.

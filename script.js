@@ -1,1 +1,43 @@
-const menuBtn=document.getElementById('menuBtn'),mobileMenu=document.getElementById('mobileMenu');menuBtn?.addEventListener('click',()=>mobileMenu.classList.toggle('open'));mobileMenu?.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>mobileMenu.classList.remove('open')));const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target)}}),{threshold:.1});document.querySelectorAll('.reveal').forEach(el=>io.observe(el));document.getElementById('year').textContent=new Date().getFullYear();document.getElementById('quoteForm')?.addEventListener('submit',e=>{e.preventDefault();const d=new FormData(e.currentTarget),msg=`Hi Danny Automotive, I'd like to request service.%0A%0AName: ${encodeURIComponent(d.get('name'))}%0APhone: ${encodeURIComponent(d.get('phone'))}%0AVehicle: ${encodeURIComponent(d.get('vehicle'))}%0ALocation: ${encodeURIComponent(d.get('location'))}%0AService: ${encodeURIComponent(d.get('service'))}%0AIssue: ${encodeURIComponent(d.get('issue')||'')}`;window.location.href=`sms:+13477220062?&body=${msg}`});
+(function(){
+  var menuBtn=document.getElementById('menuBtn'),mobileMenu=document.getElementById('mobileMenu');
+  menuBtn&&menuBtn.addEventListener('click',function(){
+    var open=mobileMenu.classList.toggle('open');
+    menuBtn.classList.toggle('open',open);
+    menuBtn.setAttribute('aria-expanded',open);
+  });
+  mobileMenu&&mobileMenu.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click',function(){
+      mobileMenu.classList.remove('open');
+      menuBtn.classList.remove('open');
+      menuBtn.setAttribute('aria-expanded','false');
+    });
+  });
+
+  var nav=document.getElementById('siteNav');
+  var onScroll=function(){ nav.classList.toggle('scrolled', window.scrollY>10); };
+  window.addEventListener('scroll',onScroll,{passive:true});
+  onScroll();
+
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); }
+    });
+  },{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+
+  var yearEl=document.getElementById('year');
+  if(yearEl) yearEl.textContent=new Date().getFullYear();
+
+  var form=document.getElementById('quoteForm');
+  form&&form.addEventListener('submit',function(e){
+    e.preventDefault();
+    var d=new FormData(e.currentTarget);
+    var msg='Hi Danny Automotive, I\'d like to request service.%0A%0AName: '+encodeURIComponent(d.get('name'))+
+      '%0APhone: '+encodeURIComponent(d.get('phone'))+
+      '%0AVehicle: '+encodeURIComponent(d.get('vehicle'))+
+      '%0ALocation: '+encodeURIComponent(d.get('location'))+
+      '%0AService: '+encodeURIComponent(d.get('service'))+
+      '%0AIssue: '+encodeURIComponent(d.get('issue')||'');
+    window.location.href='sms:+13477220062?&body='+msg;
+  });
+})();
